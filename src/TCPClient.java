@@ -24,6 +24,8 @@ public class TCPClient {
             // Connect to server
             s = new Socket(serverIP, port);
 
+            System.out.println("socket");
+
             // Input and Output streams for communication with server
             DataInputStream in = new DataInputStream( s.getInputStream());
             DataOutputStream out = new DataOutputStream( s.getOutputStream());
@@ -35,13 +37,14 @@ public class TCPClient {
             // Send user input to server
             out.writeUTF(input.toString());
 
+            // Read and print message returned from server
             String data = in.readUTF();
             System.out.println("Received: " + data);
 
         } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e.getMessage());
         } finally {
             if(s != null && !s.isClosed()) {
                 s.close();
