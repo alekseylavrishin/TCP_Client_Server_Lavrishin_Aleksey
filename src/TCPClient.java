@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 /**
  * TCP Client for Java Socket Programming Implementation
- * This is a modified version of the TCP Client shown on page 156 of Distributed Systems: Concepts and Design 5e
  * Takes two arguments - Server IP and Port Number
  * These arguments should match the IP and Port the TCP Server is listening on
  * To run this client,type "java TCPClient.java 127.0.0.1 32000" into the terminal
