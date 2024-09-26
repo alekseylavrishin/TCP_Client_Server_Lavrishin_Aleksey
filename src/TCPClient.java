@@ -12,7 +12,7 @@ import java.util.Scanner;
 public class TCPClient {
     public static void main(String args[]) throws IOException {
         if(args.length != 2){
-            System.out.println("Proper input format must be 'java TCPClient <server_ip> <port>'");
+            System.out.println("Proper input format must be 'java TCPClient.java <server_ip> <port>'");
             return;
         }
         String serverIP = null;

@@ -13,7 +13,7 @@ import java.io.*;
 public class TCPServer {
     public static void main (String args[]) throws IOException {
         if(args.length != 2){
-            System.out.println("Proper input format must be 'java TCPServer <server_ip> <port>'");
+            System.out.println("Proper input format must be 'java TCPServer.java <server_ip> <port>'");
             return;
         }
 
