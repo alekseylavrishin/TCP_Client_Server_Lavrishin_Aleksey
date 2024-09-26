@@ -2,8 +2,6 @@
 
 This is my solution for Homework Set 1 - Question 7 for CS6650 Distributed Systems.
 
-When creating the client and server, I took inspiration from the examples shown on pages 156 and 157 of Distributed Systems: Concepts and Design 5e.
-
 The server starts in passive mode listening for a transmission from the client. 
 When the client successfully connects to the server, the client passes an 80 character max string that the server then reverses the order and case of. 
 The server sends this reversed string back to the client who then displays it via a print statement. 
