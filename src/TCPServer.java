@@ -1,3 +1,4 @@
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.*;
@@ -7,19 +8,25 @@ import java.io.*;
  * This is a modified version of the TCP Server shown on page 157 of Distributed Systems: Concepts and Design 5e
  * Takes two arguments - Server IP and Port Number
  * These arguments should match the IP and Port the TCP Server is listening on
- * To run this server,type "java TCPServer.java 32000" into the terminal
+ * To run this server,type "java TCPServer.java 127.0.0.1 32000" into the terminal
  */
 public class TCPServer {
     public static void main (String args[]) throws IOException {
-        if(args.length != 1){
-            System.out.println("Proper input format must be 'java TCPServer <IP> <port>'");
+        if(args.length != 2){
+            System.out.println("Proper input format must be 'java TCPServer <server_ip> <port>'");
             return;
         }
 
         try{
-            int serverPort = Integer.parseInt(args[0]);
-            ServerSocket listenSocket = new ServerSocket(serverPort);
-            System.out.println("Server listening on port " + serverPort);
+            String serverIP = args[0];
+            int serverPort = Integer.parseInt(args[1]);
+
+            // Translate String IP Address into InetAddress type
+            InetAddress ip = InetAddress.getByName(serverIP);
+
+            ServerSocket listenSocket = new ServerSocket(serverPort, 50, ip);
+
+            System.out.println("Server listening on IP " + ip + " port " + serverPort);
 
             //while (true){ uncomment to accept multiple connections
             // Look for and accept single incoming connection
