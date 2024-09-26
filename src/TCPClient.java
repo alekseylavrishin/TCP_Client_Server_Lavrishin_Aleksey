@@ -1,7 +1,14 @@
-import java.util.Arrays;
 import java.net.*;
 import java.io.*;
+import java.util.Scanner;
 
+/**
+ * TCP Client for Java Socket Programming Implementation
+ * This is a modified version of the TCP Client shown on page 156 of Distributed Systems: Concepts and Design 5e
+ * Takes two arguments - Server IP and Port Number
+ * These arguments should match the IP and Port the TCP Server is listening on
+ * To run this client,type "java TCPClient.java 127.0.0.1 32000" into the terminal
+ */
 public class TCPClient {
     public static void main(String args[]) throws IOException {
         if(args.length != 2){
@@ -24,28 +31,29 @@ public class TCPClient {
             // Connect to server
             s = new Socket(serverIP, port);
 
-            System.out.println("socket");
-
             // Input and Output streams for communication with server
             DataInputStream in = new DataInputStream( s.getInputStream());
             DataOutputStream out = new DataOutputStream( s.getOutputStream());
 
             // Get user input
-            BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-            System.out.println("Enter text: ");
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter text: ");
+            String line = scanner.nextLine();
 
             // Send user input to server
-            out.writeUTF(input.toString());
+            out.writeUTF(line);
 
             // Read and print message returned from server
             String data = in.readUTF();
-            System.out.println("Received: " + data);
+            System.out.print("Response from the server: " + data);
 
         } catch (UnknownHostException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        } finally {
+        }
+
+        finally {
             if(s != null && !s.isClosed()) {
                 s.close();
             }
